@@ -6,9 +6,12 @@ export default async function Home() {
   const rapport = await sjokkRapport();
 
   return (
-    <main className="flex min-h-screen flex-col bg-yellow">
-      <AkkuratNaa />
-      <SjokkSnitt rapport={rapport} />
+    <main className="flex min-h-screen flex-col justify-center bg-black">
+      <div className={"bg-yellow"}>
+        <AkkuratNaa />
+        <SjokkSnitt rapport={rapport} />
+        <AkkuratNaa />
+      </div>
     </main>
   );
 }

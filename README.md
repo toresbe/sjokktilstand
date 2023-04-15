@@ -1,5 +1,6 @@
 Akkurat nå: Sjokktilstand
 
+![Skjermbilde](public/screenshot.png)
 ## Frontend
 
 First, run the development server:

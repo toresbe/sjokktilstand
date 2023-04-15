@@ -18,10 +18,10 @@ const getRelativeShock = (averageSjokk: number, currentSjokk: number) => {
   if (difference <= 0.5) return "normal";
 
   if (currentSjokk > averageSjokk) {
-    if (difference > 1) return "wayMore";
+    if (difference > 2) return "wayMore";
     return "more";
   } else {
-    if (difference > 1) return "wayLess";
+    if (difference > 2) return "wayLess";
     return "less";
   }
 };
@@ -40,9 +40,11 @@ export const SjokkSnitt = ({ rapport }: { rapport: SjokkRapport[] }) => {
         <RelativtSjokk level={getRelativeShock(averageSjokk, currentSjokk)} />{" "}
         sjokkert
       </h2>
-      <div>Ordet «sjokk» forekommer {currentSjokk} ganger på forsiden.</div>
+      <div className={"font-bold"}>
+        Ordet «sjokk» forekommer {currentSjokk} ganger på forsiden.
+      </div>
       <div>
-        Gjennomsnitt (siden{" "}
+        Gjennomsnitt (fra {rapport.length} målinger siden{" "}
         {format(rapport[rapport.length - 1].timestamp, "dd. MMMM yyyy", {
           locale: nb,
         })}
