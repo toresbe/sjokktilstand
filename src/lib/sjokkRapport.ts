@@ -25,7 +25,7 @@ export type SjokkData = {
 export const sjokkRapport = async (): Promise<SjokkData> => {
   const sjokk: SjokkRapport[] = [];
 
-  const res = await fetch(process.env.SJOKK_URL);
+  const res = await fetch(process.env.SJOKK_URL as string);
 
   const input = new Readable();
   input.push(await res.text());
