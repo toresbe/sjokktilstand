@@ -1,5 +1,5 @@
 "use server";
-import { compareDesc } from "date-fns";
+import { compareDesc, format } from "date-fns";
 const events = require("events");
 const readline = require("readline");
 
@@ -24,8 +24,10 @@ export type SjokkData = {
 
 export const sjokkRapport = async (): Promise<SjokkData> => {
   const sjokk: SjokkRapport[] = [];
-
-  const res = await fetch(process.env.SJOKK_URL as string);
+  const res = await fetch(
+    (process.env.SJOKK_URL as string) +
+      `?${format(new Date(), "ddMMHHmm").slice(0, -1)}`
+  );
 
   const input = new Readable();
   input.push(await res.text());
