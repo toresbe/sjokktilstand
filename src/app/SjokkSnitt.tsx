@@ -1,10 +1,10 @@
-import { SjokkData } from "@/lib/sjokkRapport";
+import { ShockData } from "@/lib/shockReport";
 import { format } from "date-fns";
 import { nb } from "date-fns/locale";
 
-export type SjokkLevel = "wayLess" | "less" | "normal" | "more" | "wayMore";
+export type ShockLevel = "wayLess" | "less" | "normal" | "more" | "wayMore";
 
-const sjokkLevels: Record<SjokkLevel, JSX.Element> = {
+const sjokkLevels: Record<ShockLevel, JSX.Element> = {
   wayLess: <span className={"text-red font-bold"}>under normalt</span>,
   less: <span className={"text-red font-bold"}>noe under normalt</span>,
   normal: <span className={"text-red font-bold"}>normalt</span>,
@@ -29,10 +29,12 @@ export const getRelativeShock = (
   }
 };
 
-const RelativtSjokk = ({ level }: { level: SjokkLevel }) => sjokkLevels[level];
+const RelativtSjokk = ({ level }: { level: ShockLevel }) => (
+  <>– Dagbladet er {sjokkLevels[level]} sjokkert</>
+);
 
-export const SjokkSnitt = ({ rapport }: { rapport: SjokkData }) => {
-  const { sjokk, newest, avgShocks } = rapport;
+export const SjokkSnitt = ({ rapport }: { rapport: ShockData }) => {
+  const { shocks, newest, avgShocks } = rapport;
   return (
     <div
       className={
@@ -42,11 +44,9 @@ export const SjokkSnitt = ({ rapport }: { rapport: SjokkData }) => {
       <div className={"w-full max-w-xl"}>
         <h1 className={"text-3xl lg:text-5xl font-black"}>SJOKKRAPPORT:</h1>
         <h2 className={"text-lg lg:text-3xl py-4"}>
-          – Dagbladet er{" "}
           <RelativtSjokk
             level={getRelativeShock(avgShocks, newest.sjokkCount)}
-          />{" "}
-          sjokkert
+          />
         </h2>
         <div className={"space-y-2"}>
           <h3 className={"text-xl lg:text-2xl font-bold"}>Se sjokktallene:</h3>
@@ -58,8 +58,8 @@ export const SjokkSnitt = ({ rapport }: { rapport: SjokkData }) => {
             ).
           </div>
           <div>
-            Gjennomsnitt (av {sjokk.length} målinger siden{" "}
-            {format(sjokk[sjokk.length - 1].timestamp, "dd. MMMM yyyy", {
+            Gjennomsnitt (av {shocks.length} målinger siden{" "}
+            {format(shocks[shocks.length - 1].timestamp, "dd. MMMM yyyy", {
               locale: nb,
             })}
             ) er {avgShocks.toFixed(2)}.
