@@ -17,7 +17,7 @@ export type SjokkRapport = z.infer<typeof SjokkRapportSchema>;
 export const sjokkRapport = async (): Promise<SjokkRapport[]> => {
   const sjokk: SjokkRapport[] = [];
 
-  await new Promise((resolve) =>
+  await new Promise<void>((resolve) =>
     https.get(
       "https://simula.frikanalen.no/~toresbe/dagbladet-sjokk",
       async (input) => {
