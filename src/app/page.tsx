@@ -18,8 +18,28 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col justify-center bg-black">
       <Head>
         <title>Sjokktilstand</title>
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@toresbe" />
+        <meta
+          name="description"
+          content="Oppdatert oversikt over Dagbladets sjokktilstand"
+        />
+        <meta property="og:url" content="https://sjokktilstand.gunkies.org/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Sjokktilstand" />
+        <meta
+          property="og:description"
+          content={RelativeSjokk[rapport.relativeShock]}
+        />
+        <meta
+          property="og:image"
+          content="https://sjokktilstand.gunkies.org/sjokk.png"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="sjokktilstand.gunkies.org" />
+        <meta
+          property="twitter:url"
+          content="https://sjokktilstand.gunkies.org/"
+        />
         <meta name="twitter:title" content="Sjokktilstand" />
         <meta
           name="twitter:description"
