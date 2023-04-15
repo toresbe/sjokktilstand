@@ -1,6 +1,7 @@
 import "./globals.css";
 import "@fontsource/roboto";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Sjokktilstand",
@@ -26,7 +27,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="no">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
