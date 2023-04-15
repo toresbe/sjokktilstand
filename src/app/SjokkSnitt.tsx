@@ -48,6 +48,18 @@ export const SjokkSnitt = ({ rapport }: { rapport: ShockData }) => {
             level={getRelativeShock(avgShocks, newest.sjokkCount)}
           />
         </h2>
+        <div className={"flex flex-wrap gap-2 pb-4"}>
+          {newest.sjokk
+            .sort((a, b) => b.length - a.length)
+            .map((x, i) => (
+              <div
+                key={i}
+                className={"px-2 py-1 bg-red text-white whitespace-nowrap"}
+              >
+                {x}
+              </div>
+            ))}
+        </div>
         <div className={"space-y-2"}>
           <h3 className={"text-xl lg:text-2xl font-bold"}>Se sjokktallene:</h3>
           <div className={"lg:text-lg font-bold"}>
