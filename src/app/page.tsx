@@ -25,7 +25,10 @@ export default async function Home() {
           name="twitter:description"
           content={RelativeSjokk[rapport.relativeShock]}
         />
-        <meta name="twitter:image" content="sjokk.png" />
+        <meta
+          name="twitter:image"
+          content="https://sjokktilstand.gunkies.org/sjokk.png"
+        />
       </Head>
       <div className={"bg-yellow"}>
         <AkkuratNaa />
