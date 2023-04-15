@@ -18,7 +18,7 @@ export const sjokkRapport = async (): Promise<SjokkRapport[]> => {
   const sjokk: SjokkRapport[] = [];
 
   const rl = readline.createInterface({
-    input: fs.createReadStream("../sjokk/dagbladet-sjokk"),
+    input: fs.createReadStream("dagbladet-sjokk"),
     crlfDelay: Infinity,
   });
 
