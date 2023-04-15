@@ -60,8 +60,10 @@ export const SjokkSnitt = ({ rapport }: { rapport: ShockData }) => {
               </div>
             ))}
         </div>
-        <div className={"space-y-2"}>
-          <h3 className={"text-xl lg:text-2xl font-bold"}>Se sjokktallene:</h3>
+        <div className={"space-y-1"}>
+          <h3 className={"text-xl lg:text-2xl font-bold pb-1"}>
+            Se sjokktallene:
+          </h3>
           <div className={"lg:text-lg font-bold"}>
             Ordet «sjokk» forekommer {newest.sjokkCount} ganger på forsiden (per{" "}
             {format(newest.timestamp, "dd. MMMM HH:mm", {
