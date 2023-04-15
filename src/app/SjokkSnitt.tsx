@@ -5,11 +5,11 @@ import { nb } from "date-fns/locale";
 export type SjokkLevel = "wayLess" | "less" | "normal" | "more" | "wayMore";
 
 const sjokkLevels: Record<SjokkLevel, JSX.Element> = {
-  wayLess: <span className={"text-black font-bold"}>under normalt</span>,
-  less: <span className={"text-black font-bold"}>noe under normalt</span>,
+  wayLess: <span className={"text-red font-bold"}>under normalt</span>,
+  less: <span className={"text-red font-bold"}>noe under normalt</span>,
   normal: <span className={"text-red font-bold"}>normalt</span>,
-  more: <span className={"text-black font-bold"}>uvanlig</span>,
-  wayMore: <span className={"text-black font-bold"}>ekstremt</span>,
+  more: <span className={"text-red font-bold"}>uvanlig</span>,
+  wayMore: <span className={"text-red font-bold"}>ekstremt</span>,
 };
 
 export const getRelativeShock = (
@@ -49,7 +49,7 @@ export const SjokkSnitt = ({ rapport }: { rapport: SjokkData }) => {
           sjokkert
         </h2>
         <div className={"space-y-2"}>
-          <h3 className={"text-lg font-bold"}>Se sjokktallene:</h3>
+          <h3 className={"text-xl lg:text-2xl font-bold"}>Se sjokktallene:</h3>
           <div className={"lg:text-lg font-bold"}>
             Ordet «sjokk» forekommer {newest.sjokkCount} ganger på forsiden (per{" "}
             {format(newest.timestamp, "dd. MMMM HH:mm", {
