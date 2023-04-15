@@ -7,11 +7,15 @@ import * as z from "zod";
 import { Readable } from "stream";
 import { getRelativeShock, SjokkLevel } from "@/app/SjokkSnitt";
 
+// Servers run on UTC, timestamps are Europe/Oslo.
+const TIMEZONE_OFFSET = process.env.NODE_ENV === "production" ? 7200 : 0;
+
 const SjokkRapportSchema = z.object({
   sjokkCount: z.number(),
   sjokk: z.string().array(),
+  // In retrospect, using an integer timestamp as opposed to ISO 8601 was not a good idea.
   timestamp: z.preprocess(
-    (ts) => new Date(((ts as number) + 7200) * 1000),
+    (ts) => new Date(((ts as number) + TIMEZONE_OFFSET) * 1000),
     z.date()
   ),
 });
