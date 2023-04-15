@@ -6,10 +6,14 @@ export const metadata = {
   description: "Oppdatert oversikt over Dagbladets sjokktilstand",
   twitter: {
     creator: "@toresbe",
+    title: "Sjokktilstand",
+    description: "Oppdatert oversikt over Dagbladets sjokktilstand",
     images: ["https://sjokktilstand.gunkies.org/sjokk.png"],
   },
   openGraph: {
     images: "https://sjokktilstand.gunkies.org/sjokk.png",
+    title: "Sjokktilstand",
+    description: "Oppdatert oversikt over Dagbladets sjokktilstand",
   },
 };
 
