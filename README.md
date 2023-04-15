@@ -1,6 +1,9 @@
 Akkurat nå: Sjokktilstand
 
 ![Skjermbilde](public/screenshot.png)
+
+Denne består av to deler; en Selenium-basert scraper som jevnlig loggfører sjokkstatistikk til en JSON-per-linje-fil, og en en Next.js 13-basert frontend.
+
 ## Frontend
 
 First, run the development server:
