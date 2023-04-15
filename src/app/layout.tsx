@@ -5,6 +5,7 @@ export const metadata = {
   title: "Sjokktilstand",
   description: "Oppdatert oversikt over Dagbladets sjokktilstand",
   twitter: {
+    card: "summary_large_image",
     creator: "@toresbe",
     title: "Sjokktilstand",
     description: "Oppdatert oversikt over Dagbladets sjokktilstand",
