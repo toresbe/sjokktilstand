@@ -38,17 +38,17 @@ export const SjokkSnitt = ({ rapport }: { rapport: ShockData }) => {
   return (
     <div
       className={
-        "p-4 lg:p-12 bg-red text-black bg-yellow flex flex-col items-center justify-center max-md:grow"
+        "p-4 lg:p-12 bg-red text-black bg-yellow flex flex-col items-center justify-center max-lg:grow"
       }
     >
-      <div className={"w-full max-w-xl"}>
-        <h1 className={"text-3xl lg:text-5xl font-black"}>SJOKKRAPPORT:</h1>
-        <h2 className={"text-lg lg:text-3xl py-4"}>
+      <div className={"w-full max-w-xl space-y-5"}>
+        <h1 className={"text-3xl sm:text-5xl font-black"}>SJOKKRAPPORT:</h1>
+        <h2 className={"text-lg sm:text-3xl"}>
           <RelativtSjokk
             level={getRelativeShock(avgShocks, newest.sjokkCount)}
           />
         </h2>
-        <div className={"flex flex-wrap gap-2 pb-4"}>
+        <div className={"flex flex-wrap gap-2"}>
           {newest.sjokk
             .sort((a, b) => b.length - a.length)
             .map((x, i) => (

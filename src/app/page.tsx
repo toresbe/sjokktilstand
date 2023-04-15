@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col lg:justify-center bg-black">
-      <div className={"bg-red text-white flex-col flex max-md:grow"}>
+      <div className={"bg-red text-white flex-col flex max-lg:grow"}>
         <AkkuratNaa />
         <SjokkSnitt rapport={rapport} />
         <AkkuratNaa />

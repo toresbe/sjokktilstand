@@ -1,7 +1,8 @@
 import "./globals.css";
 import "@fontsource/roboto";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Sjokktilstand",
   description: "Oppdatert oversikt over Dagbladets sjokktilstand",
   twitter: {
