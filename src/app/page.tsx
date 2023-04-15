@@ -25,7 +25,7 @@ export default async function Home() {
           name="twitter:description"
           content={RelativeSjokk[rapport.relativeShock]}
         />
-        <meta name="twitter:image" content="URL_FOR_YOUR_IMAGE" />
+        <meta name="twitter:image" content="sjokk.png" />
       </Head>
       <div className={"bg-yellow"}>
         <AkkuratNaa />
