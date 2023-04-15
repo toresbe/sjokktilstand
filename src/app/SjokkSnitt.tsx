@@ -5,11 +5,11 @@ import { nb } from "date-fns/locale";
 export type SjokkLevel = "wayLess" | "less" | "normal" | "more" | "wayMore";
 
 const sjokkLevels: Record<SjokkLevel, JSX.Element> = {
-  wayLess: <span className={"text-white font-bold"}>under normalt</span>,
-  less: <span className={"text-white font-bold"}>noe under normalt</span>,
-  normal: <span className={"text-white font-bold"}>normalt</span>,
-  more: <span className={"text-white font-bold"}>uvanlig</span>,
-  wayMore: <span className={"text-white font-bold"}>ekstremt</span>,
+  wayLess: <span className={"text-black font-bold"}>under normalt</span>,
+  less: <span className={"text-black font-bold"}>noe under normalt</span>,
+  normal: <span className={"text-red font-bold"}>normalt</span>,
+  more: <span className={"text-black font-bold"}>uvanlig</span>,
+  wayMore: <span className={"text-black font-bold"}>ekstremt</span>,
 };
 
 export const getRelativeShock = (
@@ -34,22 +34,37 @@ const RelativtSjokk = ({ level }: { level: SjokkLevel }) => sjokkLevels[level];
 export const SjokkSnitt = ({ rapport }: { rapport: SjokkData }) => {
   const { sjokk, newest, avgShocks } = rapport;
   return (
-    <div className={"p-12 bg-red text-white w-full max-w-xl"}>
-      <h1 className={"text-5xl font-black"}>SJOKKRAPPORT:</h1>
-      <h2 className={"text-3xl py-4"}>
-        – Dagbladet er{" "}
-        <RelativtSjokk level={getRelativeShock(avgShocks, newest.sjokkCount)} />{" "}
-        sjokkert
-      </h2>
-      <div className={"font-bold text-lg"}>
-        Ordet «sjokk» forekommer {newest.sjokkCount} ganger på forsiden.
-      </div>
-      <div>
-        Gjennomsnitt (av {sjokk.length} målinger siden{" "}
-        {format(sjokk[sjokk.length - 1].timestamp, "dd. MMMM yyyy", {
-          locale: nb,
-        })}
-        ) er {avgShocks.toFixed(2)}.
+    <div
+      className={
+        "p-4 lg:p-12 bg-red text-black bg-yellow flex flex-col items-center justify-center max-md:grow"
+      }
+    >
+      <div className={"w-full max-w-xl"}>
+        <h1 className={"text-3xl lg:text-5xl font-black"}>SJOKKRAPPORT:</h1>
+        <h2 className={"text-lg lg:text-3xl py-4"}>
+          – Dagbladet er{" "}
+          <RelativtSjokk
+            level={getRelativeShock(avgShocks, newest.sjokkCount)}
+          />{" "}
+          sjokkert
+        </h2>
+        <div className={"space-y-2"}>
+          <h3 className={"text-lg font-bold"}>Se sjokktallene:</h3>
+          <div className={"lg:text-lg font-bold"}>
+            Ordet «sjokk» forekommer {newest.sjokkCount} ganger på forsiden (per{" "}
+            {format(newest.timestamp, "dd. MMMM HH:mm", {
+              locale: nb,
+            })}
+            ).
+          </div>
+          <div>
+            Gjennomsnitt (av {sjokk.length} målinger siden{" "}
+            {format(sjokk[sjokk.length - 1].timestamp, "dd. MMMM yyyy", {
+              locale: nb,
+            })}
+            ) er {avgShocks.toFixed(2)}.
+          </div>
+        </div>
       </div>
     </div>
   );

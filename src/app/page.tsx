@@ -15,7 +15,7 @@ export default async function Home() {
   const rapport = await sjokkRapport();
 
   return (
-    <main className="flex min-h-screen flex-col justify-center bg-black">
+    <main className="flex min-h-screen flex-col lg:justify-center bg-black">
       <Head>
         <title>Sjokktilstand</title>
         <meta
@@ -33,7 +33,8 @@ export default async function Home() {
           property="og:image"
           content="https://sjokktilstand.gunkies.org/sjokk.png"
         />
-
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="sjokktilstand.gunkies.org" />
         <meta
@@ -50,11 +51,9 @@ export default async function Home() {
           content="https://sjokktilstand.gunkies.org/sjokk.png"
         />
       </Head>
-      <div className={"bg-yellow"}>
+      <div className={"bg-red text-white flex-col flex max-md:grow"}>
         <AkkuratNaa />
-        <div className={"bg-red flex justify-center"}>
-          <SjokkSnitt rapport={rapport} />
-        </div>
+        <SjokkSnitt rapport={rapport} />
         <AkkuratNaa />
       </div>
     </main>
