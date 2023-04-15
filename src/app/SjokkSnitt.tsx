@@ -7,7 +7,7 @@ type SjokkLevel = "wayLess" | "less" | "normal" | "more" | "wayMore";
 const sjokkLevels: Record<SjokkLevel, JSX.Element> = {
   wayLess: <span className={"text-white font-bold"}>under normalt</span>,
   less: <span className={"text-white font-bold"}>noe under normalt</span>,
-  normal: <span className={"text-white font-bold"}>sedvanlig</span>,
+  normal: <span className={"text-white font-bold"}>normalt</span>,
   more: <span className={"text-white font-bold"}>uvanlig</span>,
   wayMore: <span className={"text-white font-bold"}>ekstremt</span>,
 };
@@ -33,14 +33,14 @@ export const SjokkSnitt = ({ rapport }: { rapport: SjokkRapport[] }) => {
   const currentSjokk = rapport[0].sjokkCount;
 
   return (
-    <div className={"p-6 bg-red text-white"}>
+    <div className={"p-12 bg-red text-white"}>
       <h1 className={"text-5xl font-black"}>SJOKKRAPPORT:</h1>
       <h2 className={"text-3xl py-4"}>
         – Dagbladet er{" "}
         <RelativtSjokk level={getRelativeShock(averageSjokk, currentSjokk)} />{" "}
         sjokkert
       </h2>
-      <div className={"font-bold"}>
+      <div className={"font-bold text-lg"}>
         Ordet «sjokk» forekommer {currentSjokk} ganger på forsiden.
       </div>
       <div>

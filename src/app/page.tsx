@@ -9,7 +9,9 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col justify-center bg-black">
       <div className={"bg-yellow"}>
         <AkkuratNaa />
-        <SjokkSnitt rapport={rapport} />
+        <div className={"bg-red flex justify-center"}>
+          <SjokkSnitt rapport={rapport} />
+        </div>
         <AkkuratNaa />
       </div>
     </main>
