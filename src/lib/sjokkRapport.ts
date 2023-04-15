@@ -5,6 +5,7 @@ const fs = require("fs");
 const readline = require("readline");
 
 import * as z from "zod";
+import path from "path";
 
 const SjokkRapportSchema = z.object({
   sjokkCount: z.number(),
@@ -18,7 +19,7 @@ export const sjokkRapport = async (): Promise<SjokkRapport[]> => {
   const sjokk: SjokkRapport[] = [];
 
   const rl = readline.createInterface({
-    input: fs.createReadStream("dagbladet-sjokk"),
+    input: fs.createReadStream(path.join(__dirname, "public/dagbladet-sjokk")),
     crlfDelay: Infinity,
   });
 

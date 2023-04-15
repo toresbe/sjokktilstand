@@ -44,7 +44,7 @@ export const SjokkSnitt = ({ rapport }: { rapport: SjokkRapport[] }) => {
         Ordet «sjokk» forekommer {currentSjokk} ganger på forsiden.
       </div>
       <div>
-        Gjennomsnitt (fra {rapport.length} målinger siden{" "}
+        Gjennomsnitt (av {rapport.length} målinger siden{" "}
         {format(rapport[rapport.length - 1].timestamp, "dd. MMMM yyyy", {
           locale: nb,
         })}
