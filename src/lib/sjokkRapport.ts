@@ -25,9 +25,7 @@ export type SjokkData = {
 export const sjokkRapport = async (): Promise<SjokkData> => {
   const sjokk: SjokkRapport[] = [];
 
-  const res = await fetch(
-    "https://simula.frikanalen.no/~toresbe/dagbladet-sjokk"
-  );
+  const res = await fetch(process.env.SJOKK_URL);
 
   const input = new Readable();
   input.push(await res.text());
