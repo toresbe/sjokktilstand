@@ -4,7 +4,8 @@ const events = require("events");
 const readline = require("readline");
 
 import * as z from "zod";
-import * as https from "https";
+import { Readable } from "stream";
+import { getRelativeShock, SjokkLevel } from "@/app/SjokkSnitt";
 
 const SjokkRapportSchema = z.object({
   sjokkCount: z.number(),
@@ -14,30 +15,37 @@ const SjokkRapportSchema = z.object({
 
 export type SjokkRapport = z.infer<typeof SjokkRapportSchema>;
 
-export const sjokkRapport = async (): Promise<SjokkRapport[]> => {
+export type SjokkData = {
+  newest: SjokkRapport;
+  sjokk: SjokkRapport[];
+  avgShocks: number;
+  relativeShock: SjokkLevel;
+};
+
+export const sjokkRapport = async (): Promise<SjokkData> => {
   const sjokk: SjokkRapport[] = [];
 
-  await new Promise<void>((resolve) =>
-    https.get(
-      "https://simula.frikanalen.no/~toresbe/dagbladet-sjokk",
-      async (input) => {
-        const rl = readline.createInterface({ input });
-
-        rl.on("line", (line: string) => {
-          sjokk.push(
-            SjokkRapportSchema.parse(JSON.parse(line.replace(/\\n/g, " ")))
-          );
-        });
-
-        await events.once(rl, "close");
-        resolve();
-      }
-    )
+  const res = await fetch(
+    "https://simula.frikanalen.no/~toresbe/dagbladet-sjokk"
   );
 
-  sjokk.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
+  const input = new Readable();
+  input.push(await res.text());
+  input.push(null);
 
-  return sjokk;
+  const rl = readline.createInterface({ input });
+
+  rl.on("line", (line: string) => {
+    sjokk.push(SjokkRapportSchema.parse(JSON.parse(line.replace(/\\n/g, " "))));
+  });
+
+  await events.once(rl, "close");
+
+  sjokk.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
+  const sjokkSnitt = avgSjokkCount(sjokk);
+  const newest = sjokk[0];
+  const relativeShock = getRelativeShock(sjokkSnitt, newest.sjokkCount);
+  return { sjokk, avgShocks: sjokkSnitt, newest, relativeShock };
 };
 
 export const avgSjokkCount = (sjokkRapport: SjokkRapport[]) => {

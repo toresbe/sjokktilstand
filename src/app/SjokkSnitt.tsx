@@ -1,8 +1,8 @@
-import { avgSjokkCount, SjokkRapport } from "@/lib/sjokkRapport";
+import { SjokkData } from "@/lib/sjokkRapport";
 import { format } from "date-fns";
 import { nb } from "date-fns/locale";
 
-type SjokkLevel = "wayLess" | "less" | "normal" | "more" | "wayMore";
+export type SjokkLevel = "wayLess" | "less" | "normal" | "more" | "wayMore";
 
 const sjokkLevels: Record<SjokkLevel, JSX.Element> = {
   wayLess: <span className={"text-white font-bold"}>under normalt</span>,
@@ -12,7 +12,10 @@ const sjokkLevels: Record<SjokkLevel, JSX.Element> = {
   wayMore: <span className={"text-white font-bold"}>ekstremt</span>,
 };
 
-const getRelativeShock = (averageSjokk: number, currentSjokk: number) => {
+export const getRelativeShock = (
+  averageSjokk: number,
+  currentSjokk: number
+) => {
   const difference = Math.abs(averageSjokk - currentSjokk);
 
   if (difference <= 0.5) return "normal";
@@ -28,27 +31,25 @@ const getRelativeShock = (averageSjokk: number, currentSjokk: number) => {
 
 const RelativtSjokk = ({ level }: { level: SjokkLevel }) => sjokkLevels[level];
 
-export const SjokkSnitt = ({ rapport }: { rapport: SjokkRapport[] }) => {
-  const averageSjokk = avgSjokkCount(rapport);
-  const currentSjokk = rapport[0].sjokkCount;
-
+export const SjokkSnitt = ({ rapport }: { rapport: SjokkData }) => {
+  const { sjokk, newest, avgShocks } = rapport;
   return (
-    <div className={"p-12 bg-red text-white"}>
+    <div className={"p-12 bg-red text-white w-full max-w-xl"}>
       <h1 className={"text-5xl font-black"}>SJOKKRAPPORT:</h1>
       <h2 className={"text-3xl py-4"}>
         – Dagbladet er{" "}
-        <RelativtSjokk level={getRelativeShock(averageSjokk, currentSjokk)} />{" "}
+        <RelativtSjokk level={getRelativeShock(avgShocks, newest.sjokkCount)} />{" "}
         sjokkert
       </h2>
       <div className={"font-bold text-lg"}>
-        Ordet «sjokk» forekommer {currentSjokk} ganger på forsiden.
+        Ordet «sjokk» forekommer {newest.sjokkCount} ganger på forsiden.
       </div>
       <div>
-        Gjennomsnitt (av {rapport.length} målinger siden{" "}
-        {format(rapport[rapport.length - 1].timestamp, "dd. MMMM yyyy", {
+        Gjennomsnitt (av {sjokk.length} målinger siden{" "}
+        {format(sjokk[sjokk.length - 1].timestamp, "dd. MMMM yyyy", {
           locale: nb,
         })}
-        ) er {averageSjokk.toFixed(2)}.
+        ) er {avgShocks.toFixed(2)}.
       </div>
     </div>
   );

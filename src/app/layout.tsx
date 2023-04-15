@@ -1,20 +1,19 @@
-import './globals.css'
+import "./globals.css";
 import "@fontsource/roboto";
 
-
 export const metadata = {
-  title: 'Sjokktilstand',
-  description: 'Oppdatert oversikt over Dagbladets sjokktilstand',
-}
+  title: "Sjokktilstand",
+  description: "Oppdatert oversikt over Dagbladets sjokktilstand",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="no">
       <body>{children}</body>
     </html>
-  )
+  );
 }
