@@ -10,7 +10,10 @@ import { getRelativeShock, SjokkLevel } from "@/app/SjokkSnitt";
 const SjokkRapportSchema = z.object({
   sjokkCount: z.number(),
   sjokk: z.string().array(),
-  timestamp: z.preprocess((ts) => new Date((ts as number) * 1000), z.date()),
+  timestamp: z.preprocess(
+    (ts) => new Date(((ts as number) + 7200) * 1000),
+    z.date()
+  ),
 });
 
 export type SjokkRapport = z.infer<typeof SjokkRapportSchema>;
