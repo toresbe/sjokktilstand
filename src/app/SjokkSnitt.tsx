@@ -2,9 +2,16 @@ import { ShockData } from "@/lib/shockReport";
 import { format } from "date-fns";
 import { nb } from "date-fns/locale";
 
-export type ShockLevel = "wayLess" | "less" | "normal" | "more" | "wayMore";
+export type ShockLevel =
+  | "not"
+  | "wayLess"
+  | "less"
+  | "normal"
+  | "more"
+  | "wayMore";
 
 const sjokkLevels: Record<ShockLevel, JSX.Element> = {
+  not: <span className={"text-red font-bold"}>overhodet ikke</span>,
   wayLess: <span className={"text-red font-bold"}>under normalt</span>,
   less: <span className={"text-red font-bold"}>noe under normalt</span>,
   normal: <span className={"text-red font-bold"}>normalt</span>,
@@ -16,6 +23,8 @@ export const getRelativeShock = (
   averageSjokk: number,
   currentSjokk: number
 ) => {
+  if (!currentSjokk) return "not";
+
   const difference = Math.abs(averageSjokk - currentSjokk);
 
   if (difference <= 0.5) return "normal";
@@ -64,9 +73,10 @@ export const SjokkSnitt = ({ rapport }: { rapport: ShockData }) => {
           <h3 className={"text-xl lg:text-2xl font-bold pb-1"}>
             Se sjokktallene:
           </h3>
-          <div className={"lg:text-lg font-bold"}>
-            Ordet «sjokk» forekommer {newest.sjokkCount}{" "}
-            {newest.sjokkCount === 1 ? "gang" : "ganger"} på forsiden (per{" "}
+          <div>
+            Ordet «sjokk» forekommer {newest.sjokkCount === 1 ? "bare " : ""}
+            {newest.sjokkCount} {newest.sjokkCount === 1 ? "gang" : "ganger"} på
+            forsiden (per{" "}
             {format(newest.timestamp, "dd. MMMM HH:mm", {
               locale: nb,
             })}
