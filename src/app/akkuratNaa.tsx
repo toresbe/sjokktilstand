@@ -6,29 +6,31 @@ export const AkkuratNaa = () => {
     <Marquee
       speed={100}
       gradient={false}
-      className={"h-20 p-4 font-bold text-3xl"}
+      className={"h-14 p-4 font-bold text-2xl"}
     >
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
-      <span className={"pr-16"}>AKKURAT NÅ</span>
+      <div className={"flex gap-8 pr-8"}>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+        <div>AKKURAT NÅ</div>
+      </div>
     </Marquee>
   );
 };
