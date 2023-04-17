@@ -2,7 +2,6 @@
 import { compareDesc, format } from "date-fns";
 import * as z from "zod";
 import { Readable } from "stream";
-import { getRelativeShock, ShockLevel } from "@/app/SjokkSnitt";
 
 const events = require("events");
 const readline = require("readline");
@@ -22,6 +21,31 @@ const ShockednessSampleSchema = z.object({
 
 export type ShockednessSample = z.infer<typeof ShockednessSampleSchema>;
 
+export type ShockLevel =
+  | "not"
+  | "wayLess"
+  | "less"
+  | "normal"
+  | "more"
+  | "wayMore";
+export const getRelativeShock = (
+  averageSjokk: number,
+  currentSjokk: number
+) => {
+  if (!currentSjokk) return "not";
+
+  const difference = Math.abs(averageSjokk - currentSjokk);
+
+  if (difference <= 0.5) return "normal";
+
+  if (currentSjokk > averageSjokk) {
+    if (difference > 2) return "wayMore";
+    return "more";
+  } else {
+    if (difference > 2) return "wayLess";
+    return "less";
+  }
+};
 export type ShockData = {
   newest: ShockednessSample;
   shocks: ShockednessSample[];

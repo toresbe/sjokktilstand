@@ -1,5 +1,5 @@
 import { AkkuratNaa } from "@/app/akkuratNaa";
-import { SjokkSnitt } from "@/app/SjokkSnitt";
+import { ShockPage } from "@/app/ShockPage";
 import { shockReport } from "@/lib/shockReport";
 
 export default async function Home() {
@@ -9,7 +9,7 @@ export default async function Home() {
     <main className="flex min-h-[100dvh] flex-col lg:justify-center bg-black">
       <div className={"bg-red text-white flex-col flex max-lg:grow"}>
         <AkkuratNaa />
-        <SjokkSnitt rapport={rapport} />
+        <ShockPage rapport={rapport} />
         <AkkuratNaa />
       </div>
     </main>

@@ -1,16 +1,13 @@
-import { ShockData, ShockednessSample } from "@/lib/shockReport";
+import {
+  getRelativeShock,
+  ShockData,
+  ShockednessSample,
+  ShockLevel,
+} from "@/lib/shockReport";
 import { format } from "date-fns";
 import { nb } from "date-fns/locale";
 
-export type ShockLevel =
-  | "not"
-  | "wayLess"
-  | "less"
-  | "normal"
-  | "more"
-  | "wayMore";
-
-const sjokkLevels: Record<ShockLevel, JSX.Element> = {
+const ShockLevelElement: Record<ShockLevel, JSX.Element> = {
   not: <span className={"text-red font-bold"}>overhodet ikke</span>,
   wayLess: <span className={"text-red font-bold"}>under normalt</span>,
   less: <span className={"text-red font-bold"}>noe under normalt</span>,
@@ -19,32 +16,13 @@ const sjokkLevels: Record<ShockLevel, JSX.Element> = {
   wayMore: <span className={"text-red font-bold"}>ekstremt</span>,
 };
 
-export const getRelativeShock = (
-  averageSjokk: number,
-  currentSjokk: number
-) => {
-  if (!currentSjokk) return "not";
-
-  const difference = Math.abs(averageSjokk - currentSjokk);
-
-  if (difference <= 0.5) return "normal";
-
-  if (currentSjokk > averageSjokk) {
-    if (difference > 2) return "wayMore";
-    return "more";
-  } else {
-    if (difference > 2) return "wayLess";
-    return "less";
-  }
-};
-
-const RelativtSjokk = ({ level }: { level: ShockLevel }) => (
+const ShockLevel = ({ level }: { level: ShockLevel }) => (
   <h2 className={"text-xl sm:text-3xl"}>
-    – Dagbladet er {sjokkLevels[level]} sjokkert:
+    – Dagbladet er {ShockLevelElement[level]} sjokkert:
   </h2>
 );
 
-function SjokkListe({ newest }: { newest: ShockednessSample }) {
+function ShockList({ newest }: { newest: ShockednessSample }) {
   return (
     <div className={"flex flex-wrap gap-2"}>
       {newest.sjokk
@@ -63,7 +41,7 @@ function SjokkListe({ newest }: { newest: ShockednessSample }) {
   );
 }
 
-function SjokkTallene({
+function ShockNumbers({
   rapport: { newest, shocks, avgShocks },
 }: {
   rapport: ShockData;
@@ -91,7 +69,7 @@ function SjokkTallene({
   );
 }
 
-export const SjokkSnitt = ({ rapport }: { rapport: ShockData }) => {
+export const ShockPage = ({ rapport }: { rapport: ShockData }) => {
   const { newest, avgShocks } = rapport;
   return (
     <div className={"bg-yellow text-black max-lg:flex-grow"}>
@@ -99,9 +77,9 @@ export const SjokkSnitt = ({ rapport }: { rapport: ShockData }) => {
         className={"lg:mx-auto w-full max-w-2xl p-4 lg:p-12 h-max space-y-4"}
       >
         <h1 className={"text-3xl sm:text-5xl font-black"}>SJOKKRAPPORT:</h1>
-        <RelativtSjokk level={getRelativeShock(avgShocks, newest.sjokkCount)} />
-        <SjokkListe newest={newest} />
-        <SjokkTallene rapport={rapport} />
+        <ShockLevel level={getRelativeShock(avgShocks, newest.sjokkCount)} />
+        <ShockList newest={newest} />
+        <ShockNumbers rapport={rapport} />
       </div>
     </div>
   );
