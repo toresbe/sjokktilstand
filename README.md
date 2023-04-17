@@ -1,5 +1,7 @@
 Akkurat nå: Sjokktilstand
 
+![Pull requests welcome](https://img.shields.io/badge/PRs-welcome-green)
+
 ![Skjermbilde](public/screenshot.png)
 
 Denne består av to deler; en Selenium-basert scraper som jevnlig loggfører sjokkstatistikk til en JSON-per-linje-fil, og en en Next.js 13-basert frontend.
