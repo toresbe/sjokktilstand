@@ -21,3 +21,7 @@ body {
 }
 
 
+.flag.transgender {
+  background:
+          linear-gradient(#00d2ff 20%, #ffa6b9 0 40%, white 0 60%, #ffa6b9 0 80%, #00d2ff 0)
+}
