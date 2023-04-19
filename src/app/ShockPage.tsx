@@ -50,7 +50,8 @@ function ShockNumbers({
     <div className={"space-y-2"}>
       <h3 className={"text-2xl font-bold pb-1"}>Se sjokktallene:</h3>
       <div>
-        Ordet «sjokk» forekommer {newest.sjokkCount === 1 ? "bare " : ""}
+        Ordet «sjokk» (eller «rystet»/«rystende»!) forekommer{" "}
+        {newest.sjokkCount === 1 ? "bare " : ""}
         {newest.sjokkCount} {newest.sjokkCount === 1 ? "gang" : "ganger"} på
         forsiden (per{" "}
         {format(newest.timestamp, "dd. MMMM HH:mm", {
